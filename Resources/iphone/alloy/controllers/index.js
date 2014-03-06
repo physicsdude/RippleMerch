@@ -1,6 +1,6 @@
 function Controller() {
-    function doClick() {
-        alert($.label.text);
+    function showLogin() {
+        Alloy.createController("login").getView().open();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
@@ -15,19 +15,18 @@ function Controller() {
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
-    $.__views.label = Ti.UI.createLabel({
-        width: Ti.UI.SIZE,
-        height: Ti.UI.SIZE,
-        color: "#000",
-        text: "Hello, World",
-        id: "label"
+    $.__views.__alloyId0 = Ti.UI.createButton({
+        width: "50%",
+        top: "20dp",
+        title: "Login",
+        id: "__alloyId0"
     });
-    $.__views.index.add($.__views.label);
-    doClick ? $.__views.label.addEventListener("click", doClick) : __defers["$.__views.label!click!doClick"] = true;
+    $.__views.index.add($.__views.__alloyId0);
+    showLogin ? $.__views.__alloyId0.addEventListener("click", showLogin) : __defers["$.__views.__alloyId0!click!showLogin"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
-    __defers["$.__views.label!click!doClick"] && $.__views.label.addEventListener("click", doClick);
+    __defers["$.__views.__alloyId0!click!showLogin"] && $.__views.__alloyId0.addEventListener("click", showLogin);
     _.extend($, exports);
 }
 
