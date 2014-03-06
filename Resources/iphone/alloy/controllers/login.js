@@ -1,6 +1,7 @@
 function Controller() {
     function login() {
         var myMerchants = Alloy.Collections.merchants;
+        Alloy.Globals.currentWallet = $.walletNameField.value;
         var merchant = Alloy.createModel("merchants", {
             wallet_name: $.walletNameField.value
         });
@@ -8,6 +9,7 @@ function Controller() {
         merchant.save();
         myMerchants.fetch();
         closeWindow();
+        Alloy.createController("neworder").getView().open();
     }
     function focusTextField() {
         $.walletNameField.focus();
@@ -27,15 +29,25 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.loginWin = Ti.UI.createWindow({
+        backgroundColor: "white",
         layout: "vertical",
         barColor: "#a00",
         id: "loginWin",
         title: "Merchant",
-        modal: "true"
+        modal: "false"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
     focusTextField ? $.__views.loginWin.addEventListener("open", focusTextField) : __defers["$.__views.loginWin!open!focusTextField"] = true;
+    $.__views.logoImage = Ti.UI.createImageView({
+        image: "shared/images/logo.png",
+        width: 250,
+        height: 75,
+        top: 100,
+        id: "logoImage"
+    });
+    $.__views.loginWin.add($.__views.logoImage);
     $.__views.label = Ti.UI.createLabel({
+        top: 25,
         text: "Merchant Login",
         id: "label"
     });

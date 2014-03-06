@@ -7,6 +7,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.merchants = Ti.UI.createView({
+        backgroundColor: "white",
         id: "merchants"
     });
     $.__views.merchants && $.addTopLevelView($.__views.merchants);

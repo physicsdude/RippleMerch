@@ -5,6 +5,15 @@ function Controller() {
     function showNewOrder() {
         Alloy.createController("neworder").getView().open();
     }
+    function checkPage() {
+        if ($.index.pageLoad) {
+            Titanium.UI.iPhone.hideStatusBar();
+            $.index.open();
+        } else {
+            $.index.close();
+            showLogin();
+        }
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -36,6 +45,8 @@ function Controller() {
     showNewOrder ? $.__views.newOrderButton.addEventListener("click", showNewOrder) : __defers["$.__views.newOrderButton!click!showNewOrder"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
+    $.index.addEventListener("open", checkPage);
+    $.index.pageLoad = false;
     $.index.open();
     __defers["$.__views.loginButton!click!showLogin"] && $.__views.loginButton.addEventListener("click", showLogin);
     __defers["$.__views.newOrderButton!click!showNewOrder"] && $.__views.newOrderButton.addEventListener("click", showNewOrder);
