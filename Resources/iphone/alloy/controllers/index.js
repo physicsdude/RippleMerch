@@ -25,16 +25,12 @@ function Controller() {
     });
     $.__views.index && $.addTopLevelView($.__views.index);
     $.__views.loginButton = Ti.UI.createButton({
-        width: "50%",
-        top: "20dp",
         title: "Login",
         id: "loginButton"
     });
     $.__views.index.add($.__views.loginButton);
     showLogin ? $.__views.loginButton.addEventListener("click", showLogin) : __defers["$.__views.loginButton!click!showLogin"] = true;
     $.__views.newOrderButton = Ti.UI.createButton({
-        width: "50%",
-        top: "50dp",
         title: "Get Paid",
         id: "newOrderButton"
     });

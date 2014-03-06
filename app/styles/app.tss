@@ -1,6 +1,3 @@
-".container": {
-	backgroundColor:"white"
-}
 
 "Label":{
 	top:25,
@@ -9,6 +6,15 @@
 
 "ScrollView":{
 	layout:"vertical"
+}
+
+".container": {
+	backgroundColor:"white"
+}
+
+".normal":{
+	top:25,
+	color:"gray"
 }
 
 "#logoImage":{

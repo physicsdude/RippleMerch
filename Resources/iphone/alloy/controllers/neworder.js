@@ -15,11 +15,12 @@ function Controller() {
         order.save();
         myOrders.fetch();
         var wallet = Alloy.Globals.currentWallet;
+        var currency = "undefined" == typeof $.currencyField.value ? "USD" : $.currencyField.value;
         var ripple_url = "https://ripple.com//trust?to=" + wallet + "&amount=" + $.priceField.value + "/USD";
         var ripple_url_enc = encodeURIComponent(ripple_url);
         var goog_url = "https://chart.googleapis.com/chart?cht=qr&chl=" + ripple_url_enc + "&choe=UTF-8&chs=300x300";
         closeWindow();
-        var qrTitle = "Pay " + $.priceField.value + " " + $.currencyField.value + " to " + wallet;
+        var qrTitle = "Pay " + $.priceField.value + " " + currency + " to " + wallet;
         var webview = Titanium.UI.createWebView({
             url: goog_url,
             width: 300,
@@ -29,15 +30,21 @@ function Controller() {
             backgroundColor: "white"
         });
         var closeBtn = Ti.UI.createLabel({
-            text: qrTitle + "    [Close]",
-            textAlign: "center",
-            top: 0,
-            left: -100,
-            width: 600,
+            text: qrTitle,
+            top: 20,
+            layout: "vertical",
             height: 44,
-            backgroundColor: "#ccc"
+            backgroundColor: "#3372AD"
+        });
+        var infoBtn = Ti.UI.createLabel({
+            text: "Close Window",
+            bottom: 20,
+            layout: "vertical",
+            height: 44,
+            backgroundColor: "#3372AD"
         });
         window.add(webview);
+        window.add(infoBtn);
         window.add(closeBtn);
         window.open();
         closeBtn.addEventListener("click", function() {
@@ -87,8 +94,8 @@ function Controller() {
     });
     $.__views.newOrderWin.add($.__views.label);
     $.__views.priceField = Ti.UI.createTextField({
-        width: "90%",
-        top: "35dp",
+        width: "85%",
+        top: "30dp",
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         returnKeyType: Ti.UI.RETURNKEY_DONE,
         id: "priceField",
@@ -96,18 +103,9 @@ function Controller() {
     });
     $.__views.newOrderWin.add($.__views.priceField);
     closeKeyboard ? $.__views.priceField.addEventListener("return", closeKeyboard) : __defers["$.__views.priceField!return!closeKeyboard"] = true;
-    $.__views.label2 = Ti.UI.createLabel({
-        top: 25,
-        color: "blue",
-        text: "Choose What Currency You Want to Get Paid In",
-        id: "label2"
-    });
-    $.__views.newOrderWin.add($.__views.label2);
     $.__views.currencyField = Ti.UI.createPicker({
         width: "50%",
-        top: "1",
-        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        returnKeyType: Ti.UI.RETURNKEY_DONE,
+        top: "0dp",
         id: "currencyField",
         selectionIndicator: "true",
         useSpinner: "true"
@@ -130,14 +128,20 @@ function Controller() {
     $.__views.column1.addRow($.__views.__alloyId3);
     $.__views.__alloyId4 = Ti.UI.createPickerRow({
         title: "XRP",
+        selected: "true",
         id: "__alloyId4"
     });
     $.__views.column1.addRow($.__views.__alloyId4);
     $.__views.__alloyId5 = Ti.UI.createPickerRow({
-        title: "EUR",
+        title: "LTC",
         id: "__alloyId5"
     });
     $.__views.column1.addRow($.__views.__alloyId5);
+    $.__views.__alloyId6 = Ti.UI.createPickerRow({
+        title: "EUR",
+        id: "__alloyId6"
+    });
+    $.__views.column1.addRow($.__views.__alloyId6);
     $.__views.currencyField.add(__alloyId1);
     $.__views.generateCode = Ti.UI.createButton({
         width: "50%",

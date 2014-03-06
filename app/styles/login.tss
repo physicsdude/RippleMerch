@@ -14,6 +14,12 @@
 	returnKeyType: Ti.UI.RETURNKEY_DONE
 }
 
+"#createWalletLabel":{
+	width: '90%',
+	layout: 'vertical',
+	top: '50dp'
+}
+
 ".button":{
 	width: '50%',
 	top: '20dp'

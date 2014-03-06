@@ -1,6 +1,6 @@
 function newOrder() {		
     var myOrders = Alloy.Collections.orders;
-	//$.neworder.picker.setSelectedRow(0, 1, false);
+	//$.neworder.picker.setSelectedRow(0, 1);
 
 	if ( Alloy.Globals.currentWallet == '' ) {
 		alert("Please enter your wallet name");
@@ -26,8 +26,8 @@ function newOrder() {
     
     var wallet = Alloy.Globals.currentWallet; // need to fetch merchant info here
     
+    var currency = typeof $.currencyField.value == 'undefined' ? 'USD' : $.currencyField.value;
     //currency.toUppercase();
-    //var ripple_url = 'https://ripple.com//trust?to='+wallet+'&amount='+$.priceField.value+'/'+$.currencyField.value;
     var ripple_url = 'https://ripple.com//trust?to='+wallet+'&amount='+$.priceField.value+'/USD';
 
     var ripple_url_enc = encodeURIComponent(ripple_url);
@@ -36,12 +36,14 @@ function newOrder() {
     closeWindow();
     //Alloy.createController("qrcode").getView().open();
 
-	var qrTitle = "Pay "+$.priceField.value+" "+$.currencyField.value+" to "+wallet; 
+	var qrTitle = "Pay "+$.priceField.value+" "+currency+" to "+wallet; 
   	var webview = Titanium.UI.createWebView({url:goog_url, width:300, height: 300});
     var window = Titanium.UI.createWindow({backgroundColor: 'white'});
     //window.title('Testing');
-	var closeBtn = Ti.UI.createLabel({text: qrTitle+"    [Close]", textAlign: "center", top:0, left:-100, width: 600, height:44, backgroundColor:"#ccc"});
+	var closeBtn = Ti.UI.createLabel({text: qrTitle, top: 20, layout: 'vertical', height:44, backgroundColor:"#3372AD"});
+	var infoBtn  = Ti.UI.createLabel({text: 'Close Window', bottom: 20, layout: 'vertical', height:44, backgroundColor:"#3372AD"});
     window.add(webview);
+	window.add(infoBtn);    
 	window.add(closeBtn);
 	window.open();
 	closeBtn.addEventListener("click", function(e){
@@ -49,6 +51,10 @@ function newOrder() {
 	    Alloy.createController("neworder").getView().open();
 	});
     window.open({modal:true});
+}
+
+function confirmTransaction() {
+	
 }
 
 function focusTextField() {

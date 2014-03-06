@@ -8,17 +8,15 @@
 }
 
 "#priceField":{
-	width: '90%',
-	top: '35dp',
+	width: '85%',
+	top: '30dp',
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 	returnKeyType: Ti.UI.RETURNKEY_DONE
 }
 
 "#currencyField":{
 	width: '50%',
-	top: '1dp',
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	returnKeyType: Ti.UI.RETURNKEY_DONE
+	top: '0dp'
 }
 
 
