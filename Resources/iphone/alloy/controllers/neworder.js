@@ -47,8 +47,17 @@ function Controller() {
     });
     $.__views.newOrderWin && $.addTopLevelView($.__views.newOrderWin);
     focusTextField ? $.__views.newOrderWin.addEventListener("open", focusTextField) : __defers["$.__views.newOrderWin!open!focusTextField"] = true;
+    $.__views.logoImageSmall = Ti.UI.createImageView({
+        image: "shared/images/logo.png",
+        width: 100,
+        height: 50,
+        top: 20,
+        id: "logoImageSmall"
+    });
+    $.__views.newOrderWin.add($.__views.logoImageSmall);
     $.__views.label = Ti.UI.createLabel({
         top: 25,
+        color: "blue",
         text: "New Sale",
         id: "label"
     });
@@ -64,7 +73,7 @@ function Controller() {
     $.__views.newOrderWin.add($.__views.priceField);
     closeKeyboard ? $.__views.priceField.addEventListener("return", closeKeyboard) : __defers["$.__views.priceField!return!closeKeyboard"] = true;
     $.__views.currencyField = Ti.UI.createPicker({
-        width: "90%",
+        width: "50%",
         top: "50",
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         returnKeyType: Ti.UI.RETURNKEY_DONE,

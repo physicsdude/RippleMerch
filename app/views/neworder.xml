@@ -1,5 +1,6 @@
 <Alloy>
 	<Window id="newOrderWin" title="New Order" class="container" modal="false" onOpen="focusTextField">
+		<ImageView id="logoImageSmall"/>
 		<Label id="label" >New Sale</Label>
 		<!-- <TextField id="orderNumberField" hintText="Order Number" onReturn="closeKeyboard"/> -->
 		<TextField id="priceField" hintText="Price" onReturn="closeKeyboard"/>

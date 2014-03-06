@@ -46,12 +46,6 @@ function Controller() {
         id: "logoImage"
     });
     $.__views.loginWin.add($.__views.logoImage);
-    $.__views.label = Ti.UI.createLabel({
-        top: 25,
-        text: "Merchant Login",
-        id: "label"
-    });
-    $.__views.loginWin.add($.__views.label);
     $.__views.walletNameField = Ti.UI.createTextField({
         width: "90%",
         top: "25dp",
@@ -65,7 +59,7 @@ function Controller() {
     $.__views.__alloyId0 = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
-        title: "Login",
+        title: "Merchant Login",
         id: "__alloyId0"
     });
     $.__views.loginWin.add($.__views.__alloyId0);

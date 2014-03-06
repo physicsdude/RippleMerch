@@ -1,8 +1,7 @@
 <Alloy>
 	<Window id="loginWin" title="Merchant" class="container" modal="false" onOpen="focusTextField">
 		<ImageView id="logoImage"/>
- 		<Label id="label" >Merchant Login</Label>
 		<TextField id="walletNameField" hintText="Wallet Name" onReturn="closeKeyboard"/>
-		<Button class="button" onClick="login">Login</Button>
+		<Button class="button" onClick="login">Merchant Login</Button>
 	</Window>
 </Alloy>

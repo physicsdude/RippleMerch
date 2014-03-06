@@ -1,6 +1,6 @@
 "Label":{
 	top:25,
-	//color:"#666"
+	color:"blue"
 }
 
 "ScrollView":{
@@ -12,4 +12,11 @@
 	width:250,
 	height:75,
 	top:100
+}
+
+"#logoImageSmall":{
+	image:"shared/images/logo.png",
+	width:100,
+	height:50,
+	top:20
 }
