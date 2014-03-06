@@ -6,8 +6,4 @@ function showLogin() {
 	Alloy.createController("login").getView().open();
 }
 
-function showNewOrder() {
-	Alloy.createController("neworder").getView().open();
-}
-
 $.index.open();

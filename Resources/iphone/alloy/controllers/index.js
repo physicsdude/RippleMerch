@@ -2,9 +2,6 @@ function Controller() {
     function showLogin() {
         Alloy.createController("login").getView().open();
     }
-    function showNewOrder() {
-        Alloy.createController("neworder").getView().open();
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -18,27 +15,18 @@ function Controller() {
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
-    $.__views.loginButton = Ti.UI.createButton({
+    $.__views.__alloyId0 = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
         title: "Login",
-        id: "loginButton"
+        id: "__alloyId0"
     });
-    $.__views.index.add($.__views.loginButton);
-    showLogin ? $.__views.loginButton.addEventListener("click", showLogin) : __defers["$.__views.loginButton!click!showLogin"] = true;
-    $.__views.newOrderButton = Ti.UI.createButton({
-        width: "50%",
-        top: "50dp",
-        title: "New Order",
-        id: "newOrderButton"
-    });
-    $.__views.index.add($.__views.newOrderButton);
-    showNewOrder ? $.__views.newOrderButton.addEventListener("click", showNewOrder) : __defers["$.__views.newOrderButton!click!showNewOrder"] = true;
+    $.__views.index.add($.__views.__alloyId0);
+    showLogin ? $.__views.__alloyId0.addEventListener("click", showLogin) : __defers["$.__views.__alloyId0!click!showLogin"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
-    __defers["$.__views.loginButton!click!showLogin"] && $.__views.loginButton.addEventListener("click", showLogin);
-    __defers["$.__views.newOrderButton!click!showNewOrder"] && $.__views.newOrderButton.addEventListener("click", showNewOrder);
+    __defers["$.__views.__alloyId0!click!showLogin"] && $.__views.__alloyId0.addEventListener("click", showLogin);
     _.extend($, exports);
 }
 

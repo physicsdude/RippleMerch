@@ -2,12 +2,7 @@
 	backgroundColor:"white"
 }
 
-"#loginButton":{
+".button":{
 	width: '50%',
 	top: '20dp'
-}
-
-"#newOrderButton":{
-	width: '50%',
-	top: '50dp'
 }

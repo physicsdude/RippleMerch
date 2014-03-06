@@ -2,8 +2,6 @@ var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 Alloy.Collections.merchants = Alloy.createCollection("merchants");
 
-Alloy.Collections.orders = Alloy.createCollection("orders");
-
 Alloy.Globals.top = 0;
 
 Alloy.Globals.tableTop = "50dp";

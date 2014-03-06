@@ -9,9 +9,9 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
 if (OS_IOS || OS_ANDROID) {
 	Alloy.Collections.merchants = Alloy.createCollection('merchants');
-	Alloy.Collections.orders    = Alloy.createCollection('orders');
 	Alloy.Globals.top = 0;
 	Alloy.Globals.tableTop = '50dp';
 
