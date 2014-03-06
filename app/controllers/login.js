@@ -1,13 +1,17 @@
 function login() {
     var myMerchants = Alloy.Collections.merchants;
-	
-	Alloy.Globals.currentWallet = $.walletNameField.value;
-	
+
     // Create a new model for the merchant collection
     var merchant = Alloy.createModel('merchants', {
         wallet_name : $.walletNameField.value
     });
-
+    
+	Alloy.Globals.currentWallet = $.walletNameField.value;   
+	
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// if none given, use default for testing
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
     // add new model to the global collection
     myMerchants.add(merchant);
 

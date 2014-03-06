@@ -1,10 +1,28 @@
 function Controller() {
+    function checkTransaction() {
+        if ("" == Alloy.Globals.currentWallet || "" == typeof Alloy.Globals.current["price"]) return;
+        var url = Alloy.Globals.api["url"] + "/addresses/" + Alloy.Globals.currentWallet + "/next_notification";
+        alert("sending " + url);
+        var client = Ti.Network.createHTTPClient({
+            onload: function() {
+                var got = this.responseText;
+                Ti.API.info("Received text: " + got);
+                alert("got " + got);
+                JSON.parse(got);
+            },
+            onerror: function(e) {
+                Ti.API.debug(e.error);
+                alert(e.error);
+            },
+            timeout: 5e3
+        });
+        client.open("GET", url);
+        client.send();
+    }
     function newOrder() {
         var myOrders = Alloy.Collections.orders;
         if ("" == Alloy.Globals.currentWallet) {
-            alert("Please enter your wallet name");
-            closeWindow();
-            Alloy.createController("login").getView().open();
+            Alloy.Globals.currentWallet = Alloy.Globals.defaultWallet;
             return;
         }
         var order = Alloy.createModel("orders", {
@@ -15,6 +33,7 @@ function Controller() {
         order.save();
         myOrders.fetch();
         var wallet = Alloy.Globals.currentWallet;
+        Alloy.Globals.current["price"] = $.priceField.value;
         var currency = "undefined" == typeof $.currencyField.value ? "USD" : $.currencyField.value;
         var ripple_url = "https://ripple.com//trust?to=" + wallet + "&amount=" + $.priceField.value + "/USD";
         var ripple_url_enc = encodeURIComponent(ripple_url);
@@ -33,8 +52,7 @@ function Controller() {
             text: qrTitle,
             top: 20,
             layout: "vertical",
-            height: 44,
-            backgroundColor: "#3372AD"
+            height: 44
         });
         var infoBtn = Ti.UI.createLabel({
             text: "Close Window",
@@ -54,6 +72,9 @@ function Controller() {
         window.open({
             modal: true
         });
+        setTimeout(function() {
+            checkTransaction();
+        }, 5e3);
     }
     function closeKeyboard(e) {
         e.source.blur();

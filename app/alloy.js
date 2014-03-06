@@ -15,9 +15,10 @@ if (OS_IOS || OS_ANDROID) {
 	Alloy.Collections.orders    = Alloy.createCollection('orders');
 	Alloy.Globals.top = 0;
 	Alloy.Globals.api = [];
-	Alloy.Globals.api['url'] = "https://ripple-rest.herokuapp.com";
+	Alloy.Globals.api['url'] = "https://ripple-rest.herokuapp.com/api/v1";
 	Alloy.Globals.tableTop = '20dp';
 	Alloy.Globals.currentWallet = '';
+	Alloy.Globals.defaultWallet = 'rJQL8Wm4bWUpyGFjEGeAZNFKTQVSK84ke7';
 	Alloy.Globals.current = [];
 
 	try {

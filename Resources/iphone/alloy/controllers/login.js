@@ -1,10 +1,10 @@
 function Controller() {
     function login() {
         var myMerchants = Alloy.Collections.merchants;
-        Alloy.Globals.currentWallet = $.walletNameField.value;
         var merchant = Alloy.createModel("merchants", {
             wallet_name: $.walletNameField.value
         });
+        Alloy.Globals.currentWallet = $.walletNameField.value;
         myMerchants.add(merchant);
         merchant.save();
         myMerchants.fetch();
@@ -48,7 +48,7 @@ function Controller() {
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         returnKeyType: Ti.UI.RETURNKEY_DONE,
         id: "walletNameField",
-        hintText: "What's Your Wallet Name?"
+        hintText: "What's Your Wallet Address?"
     });
     $.__views.loginWin.add($.__views.walletNameField);
     closeKeyboard ? $.__views.walletNameField.addEventListener("return", closeKeyboard) : __defers["$.__views.walletNameField!return!closeKeyboard"] = true;
@@ -60,20 +60,10 @@ function Controller() {
     });
     $.__views.loginWin.add($.__views.__alloyId0);
     login ? $.__views.__alloyId0.addEventListener("click", login) : __defers["$.__views.__alloyId0!click!login"] = true;
-    $.__views.createWalletLabel = Ti.UI.createLabel({
-        top: "50dp",
-        color: "blue",
-        width: "90%",
-        layout: "vertical",
-        text: "Don't Have a Wallet?",
-        id: "createWalletLabel"
-    });
-    $.__views.loginWin.add($.__views.createWalletLabel);
-    login ? $.__views.createWalletLabel.addEventListener("click", login) : __defers["$.__views.createWalletLabel!click!login"] = true;
     $.__views.createWallet = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
-        title: "Create One For Free",
+        title: "Create a Free Wallet",
         id: "createWallet"
     });
     $.__views.loginWin.add($.__views.createWallet);
@@ -82,7 +72,6 @@ function Controller() {
     _.extend($, $.__views);
     __defers["$.__views.walletNameField!return!closeKeyboard"] && $.__views.walletNameField.addEventListener("return", closeKeyboard);
     __defers["$.__views.__alloyId0!click!login"] && $.__views.__alloyId0.addEventListener("click", login);
-    __defers["$.__views.createWalletLabel!click!login"] && $.__views.createWalletLabel.addEventListener("click", login);
     __defers["$.__views.createWallet!click!login"] && $.__views.createWallet.addEventListener("click", login);
     _.extend($, exports);
 }
