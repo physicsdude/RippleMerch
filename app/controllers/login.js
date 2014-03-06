@@ -16,6 +16,7 @@ function login() {
     myMerchants.fetch();
 
     closeWindow();
+    
 }
 
 function focusTextField() {

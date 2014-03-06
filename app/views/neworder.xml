@@ -1,0 +1,9 @@
+<Alloy>
+	<Window id="newOrderWin" title="New Order" class="container" modal="true" onOpen="focusTextField">
+ 		<Label id="label" >New Sale</Label>
+ 		<TextField id="orderNumberField" hintText="Order Number" onReturn="closeKeyboard"/>
+		<TextField id="priceField" hintText="Price" onReturn="closeKeyboard"/>
+		<TextField id="currencyField" hintText="Currency" onReturn="closeKeyboard"/>
+		<Button class="button" onClick="newOrder">Create QR Code</Button>
+	</Window>
+</Alloy>

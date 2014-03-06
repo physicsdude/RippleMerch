@@ -50,19 +50,19 @@ function Controller() {
     });
     $.__views.loginWin.add($.__views.walletNameField);
     closeKeyboard ? $.__views.walletNameField.addEventListener("return", closeKeyboard) : __defers["$.__views.walletNameField!return!closeKeyboard"] = true;
-    $.__views.__alloyId1 = Ti.UI.createButton({
+    $.__views.__alloyId0 = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
         title: "Login",
-        id: "__alloyId1"
+        id: "__alloyId0"
     });
-    $.__views.loginWin.add($.__views.__alloyId1);
-    login ? $.__views.__alloyId1.addEventListener("click", login) : __defers["$.__views.__alloyId1!click!login"] = true;
+    $.__views.loginWin.add($.__views.__alloyId0);
+    login ? $.__views.__alloyId0.addEventListener("click", login) : __defers["$.__views.__alloyId0!click!login"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     __defers["$.__views.loginWin!open!focusTextField"] && $.__views.loginWin.addEventListener("open", focusTextField);
     __defers["$.__views.walletNameField!return!closeKeyboard"] && $.__views.walletNameField.addEventListener("return", closeKeyboard);
-    __defers["$.__views.__alloyId1!click!login"] && $.__views.__alloyId1.addEventListener("click", login);
+    __defers["$.__views.__alloyId0!click!login"] && $.__views.__alloyId0.addEventListener("click", login);
     _.extend($, exports);
 }
 
