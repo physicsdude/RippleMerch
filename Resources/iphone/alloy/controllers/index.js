@@ -2,6 +2,12 @@ function Controller() {
     function showLogin() {
         Alloy.createController("login").getView().open();
     }
+    function showNewOrder() {
+        Alloy.createController("neworder").getView().open();
+    }
+    function showNewQRCode() {
+        Alloy.createController("qrcode").getView().open();
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -15,18 +21,34 @@ function Controller() {
         id: "index"
     });
     $.__views.index && $.addTopLevelView($.__views.index);
-    $.__views.__alloyId0 = Ti.UI.createButton({
+    $.__views.loginButton = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
         title: "Login",
-        id: "__alloyId0"
+        id: "loginButton"
     });
-    $.__views.index.add($.__views.__alloyId0);
-    showLogin ? $.__views.__alloyId0.addEventListener("click", showLogin) : __defers["$.__views.__alloyId0!click!showLogin"] = true;
+    $.__views.index.add($.__views.loginButton);
+    showLogin ? $.__views.loginButton.addEventListener("click", showLogin) : __defers["$.__views.loginButton!click!showLogin"] = true;
+    $.__views.newOrderButton = Ti.UI.createButton({
+        width: "50%",
+        top: "50dp",
+        title: "New Order",
+        id: "newOrderButton"
+    });
+    $.__views.index.add($.__views.newOrderButton);
+    showNewOrder ? $.__views.newOrderButton.addEventListener("click", showNewOrder) : __defers["$.__views.newOrderButton!click!showNewOrder"] = true;
+    $.__views.newQRCode = Ti.UI.createButton({
+        title: "Generate QR Code",
+        id: "newQRCode"
+    });
+    $.__views.index.add($.__views.newQRCode);
+    showNewQRCode ? $.__views.newQRCode.addEventListener("click", showNewQRCode) : __defers["$.__views.newQRCode!click!showNewQRCode"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
-    __defers["$.__views.__alloyId0!click!showLogin"] && $.__views.__alloyId0.addEventListener("click", showLogin);
+    __defers["$.__views.loginButton!click!showLogin"] && $.__views.loginButton.addEventListener("click", showLogin);
+    __defers["$.__views.newOrderButton!click!showNewOrder"] && $.__views.newOrderButton.addEventListener("click", showNewOrder);
+    __defers["$.__views.newQRCode!click!showNewQRCode"] && $.__views.newQRCode.addEventListener("click", showNewQRCode);
     _.extend($, exports);
 }
 
