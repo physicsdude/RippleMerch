@@ -5,9 +5,6 @@ function Controller() {
     function showNewOrder() {
         Alloy.createController("neworder").getView().open();
     }
-    function showNewQRCode() {
-        Alloy.createController("qrcode").getView().open();
-    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "index";
     arguments[0] ? arguments[0]["__parentSymbol"] : null;
@@ -37,18 +34,11 @@ function Controller() {
     });
     $.__views.index.add($.__views.newOrderButton);
     showNewOrder ? $.__views.newOrderButton.addEventListener("click", showNewOrder) : __defers["$.__views.newOrderButton!click!showNewOrder"] = true;
-    $.__views.newQRCode = Ti.UI.createButton({
-        title: "Generate QR Code",
-        id: "newQRCode"
-    });
-    $.__views.index.add($.__views.newQRCode);
-    showNewQRCode ? $.__views.newQRCode.addEventListener("click", showNewQRCode) : __defers["$.__views.newQRCode!click!showNewQRCode"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
     __defers["$.__views.loginButton!click!showLogin"] && $.__views.loginButton.addEventListener("click", showLogin);
     __defers["$.__views.newOrderButton!click!showNewOrder"] && $.__views.newOrderButton.addEventListener("click", showNewOrder);
-    __defers["$.__views.newQRCode!click!showNewQRCode"] && $.__views.newQRCode.addEventListener("click", showNewQRCode);
     _.extend($, exports);
 }
 

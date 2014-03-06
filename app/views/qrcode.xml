@@ -1,7 +1,0 @@
-<Alloy>
-	<Window id="qrcodeWin" title="QR Code" class="container" modal="true" onOpen="focusTextField">
- 		<Label id="label" >QR Code</Label>
-		<TextField id="qrCodeTextField" hintText="Put test text here..." onReturn="closeKeyboard"/>
-		<Button class="button" onClick="showNewQRCode">Generate QR Code</Button>
-	</Window>
-</Alloy>
