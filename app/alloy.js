@@ -16,6 +16,7 @@ if (OS_IOS || OS_ANDROID) {
 	Alloy.Globals.top = 0;
 	Alloy.Globals.tableTop = '50dp';
 	Alloy.Globals.currentWallet = '';
+	Alloy.Globals.current = [];
 
 	try {
 		// check for iOS7

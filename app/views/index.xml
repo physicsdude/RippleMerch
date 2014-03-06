@@ -1,6 +1,6 @@
 <Alloy>
 	<Window class="container">
 		<Button id="loginButton" class="button" onClick="showLogin">Login</Button>
-		<Button id="newOrderButton" class="button" onClick="showNewOrder">New Order</Button>
+		<Button id="newOrderButton" class="button" onClick="showNewOrder">Get Paid</Button>
 	</Window>
 </Alloy>

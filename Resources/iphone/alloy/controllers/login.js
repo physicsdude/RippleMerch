@@ -11,9 +11,6 @@ function Controller() {
         closeWindow();
         Alloy.createController("neworder").getView().open();
     }
-    function focusTextField() {
-        $.walletNameField.focus();
-    }
     function closeKeyboard(e) {
         e.source.blur();
     }
@@ -37,7 +34,6 @@ function Controller() {
         modal: "false"
     });
     $.__views.loginWin && $.addTopLevelView($.__views.loginWin);
-    focusTextField ? $.__views.loginWin.addEventListener("open", focusTextField) : __defers["$.__views.loginWin!open!focusTextField"] = true;
     $.__views.logoImage = Ti.UI.createImageView({
         image: "shared/images/logo.png",
         width: 250,
@@ -59,16 +55,24 @@ function Controller() {
     $.__views.__alloyId0 = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
-        title: "Merchant Login",
+        title: "Start Accepting Payments",
         id: "__alloyId0"
     });
     $.__views.loginWin.add($.__views.__alloyId0);
     login ? $.__views.__alloyId0.addEventListener("click", login) : __defers["$.__views.__alloyId0!click!login"] = true;
+    $.__views.createWallet = Ti.UI.createButton({
+        width: "50%",
+        top: "20dp",
+        title: "Don't Have a Wallet? Create One.",
+        id: "createWallet"
+    });
+    $.__views.loginWin.add($.__views.createWallet);
+    login ? $.__views.createWallet.addEventListener("click", login) : __defers["$.__views.createWallet!click!login"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    __defers["$.__views.loginWin!open!focusTextField"] && $.__views.loginWin.addEventListener("open", focusTextField);
     __defers["$.__views.walletNameField!return!closeKeyboard"] && $.__views.walletNameField.addEventListener("return", closeKeyboard);
     __defers["$.__views.__alloyId0!click!login"] && $.__views.__alloyId0.addEventListener("click", login);
+    __defers["$.__views.createWallet!click!login"] && $.__views.createWallet.addEventListener("click", login);
     _.extend($, exports);
 }
 

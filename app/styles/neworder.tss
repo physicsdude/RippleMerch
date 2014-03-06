@@ -6,12 +6,6 @@
 	layout: 'vertical',
 	barColor: '#a00'
 }
-// "#orderNumberField":{
-	// width: '90%',
-	// top: '25dp',
-	// borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	// returnKeyType: Ti.UI.RETURNKEY_DONE
-// }
 
 "#priceField":{
 	width: '90%',

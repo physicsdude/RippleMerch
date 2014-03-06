@@ -1,19 +1,18 @@
 <Alloy>
-	<Window id="newOrderWin" title="New Order" class="container" modal="false" onOpen="focusTextField">
+	<Window id="newOrderWin" title="New Order" class="container" modal="false">
 		<ImageView id="logoImageSmall"/>
-		<Label id="label" >New Sale</Label>
-		<!-- <TextField id="orderNumberField" hintText="Order Number" onReturn="closeKeyboard"/> -->
-		<TextField id="priceField" hintText="Price" onReturn="closeKeyboard"/>
-		<!-- <TextField id="currencyField" hintText="Currency" onReturn="closeKeyboard"/> -->
-			<Picker id="currencyField" top="50" selectionIndicator="true" useSpinner="false">
-				<PickerColumn id="column1">
-					<PickerRow title="USD"/>
-					<PickerRow title="BTC"/>
-					<PickerRow title="XRP"/>
-					<PickerRow title="EUR"/>
-				</PickerColumn>
-			</Picker>
-		<Button class="button" onClick="newOrder">Show QR Code</Button>
+		<Label id="label" >Accept a Payment</Label>
+		<TextField id="priceField" hintText="How Much?" onReturn="closeKeyboard"/>
+		<Label id="label2">Choose What Currency You Want to Get Paid In</Label>				
+		<Picker id="currencyField" top="1" selectionIndicator="true" useSpinner="true">
+			<PickerColumn id="column1">
+				<PickerRow title="USD"/>
+				<PickerRow title="BTC"/>
+				<PickerRow title="XRP"/>
+				<PickerRow title="EUR"/>
+			</PickerColumn>
+		</Picker>
+		<Button class="button" id="generateCode" onClick="newOrder">Generate QR Code</Button>
 		<!-- <WebView url="https://ripple.com/client/#/login?to=r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV&amount=500.5%2FUSD&tab=trust" visible="true"> -->
 
 	</Window>

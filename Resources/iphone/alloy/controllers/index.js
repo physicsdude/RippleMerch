@@ -6,10 +6,7 @@ function Controller() {
         Alloy.createController("neworder").getView().open();
     }
     function checkPage() {
-        if ($.index.pageLoad) {
-            Titanium.UI.iPhone.hideStatusBar();
-            $.index.open();
-        } else {
+        if ($.index.pageLoad) $.index.open(); else {
             $.index.close();
             showLogin();
         }
@@ -38,7 +35,7 @@ function Controller() {
     $.__views.newOrderButton = Ti.UI.createButton({
         width: "50%",
         top: "50dp",
-        title: "New Order",
+        title: "Get Paid",
         id: "newOrderButton"
     });
     $.__views.index.add($.__views.newOrderButton);

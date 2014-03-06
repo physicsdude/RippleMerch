@@ -15,13 +15,38 @@ function Controller() {
         order.save();
         myOrders.fetch();
         var wallet = Alloy.Globals.currentWallet;
-        var ripple_url = "https://ripple.com//trust?to=" + wallet + "&amount=" + $.priceField.value + "/" + $.currencyField.value;
+        var ripple_url = "https://ripple.com//trust?to=" + wallet + "&amount=" + $.priceField.value + "/USD";
         var ripple_url_enc = encodeURIComponent(ripple_url);
         var goog_url = "https://chart.googleapis.com/chart?cht=qr&chl=" + ripple_url_enc + "&choe=UTF-8&chs=300x300";
-        alert(goog_url);
-    }
-    function focusTextField() {
-        $.priceField.focus();
+        closeWindow();
+        var qrTitle = "Pay " + $.priceField.value + " " + $.currencyField.value + " to " + wallet;
+        var webview = Titanium.UI.createWebView({
+            url: goog_url,
+            width: 300,
+            height: 300
+        });
+        var window = Titanium.UI.createWindow({
+            backgroundColor: "white"
+        });
+        var closeBtn = Ti.UI.createLabel({
+            text: qrTitle + "    [Close]",
+            textAlign: "center",
+            top: 0,
+            left: -100,
+            width: 600,
+            height: 44,
+            backgroundColor: "#ccc"
+        });
+        window.add(webview);
+        window.add(closeBtn);
+        window.open();
+        closeBtn.addEventListener("click", function() {
+            window.close();
+            Alloy.createController("neworder").getView().open();
+        });
+        window.open({
+            modal: true
+        });
     }
     function closeKeyboard(e) {
         e.source.blur();
@@ -46,7 +71,6 @@ function Controller() {
         modal: "false"
     });
     $.__views.newOrderWin && $.addTopLevelView($.__views.newOrderWin);
-    focusTextField ? $.__views.newOrderWin.addEventListener("open", focusTextField) : __defers["$.__views.newOrderWin!open!focusTextField"] = true;
     $.__views.logoImageSmall = Ti.UI.createImageView({
         image: "shared/images/logo.png",
         width: 100,
@@ -58,7 +82,7 @@ function Controller() {
     $.__views.label = Ti.UI.createLabel({
         top: 25,
         color: "blue",
-        text: "New Sale",
+        text: "Accept a Payment",
         id: "label"
     });
     $.__views.newOrderWin.add($.__views.label);
@@ -68,18 +92,25 @@ function Controller() {
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         returnKeyType: Ti.UI.RETURNKEY_DONE,
         id: "priceField",
-        hintText: "Price"
+        hintText: "How Much?"
     });
     $.__views.newOrderWin.add($.__views.priceField);
     closeKeyboard ? $.__views.priceField.addEventListener("return", closeKeyboard) : __defers["$.__views.priceField!return!closeKeyboard"] = true;
+    $.__views.label2 = Ti.UI.createLabel({
+        top: 25,
+        color: "blue",
+        text: "Choose What Currency You Want to Get Paid In",
+        id: "label2"
+    });
+    $.__views.newOrderWin.add($.__views.label2);
     $.__views.currencyField = Ti.UI.createPicker({
         width: "50%",
-        top: "50",
+        top: "1",
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         returnKeyType: Ti.UI.RETURNKEY_DONE,
         id: "currencyField",
         selectionIndicator: "true",
-        useSpinner: "false"
+        useSpinner: "true"
     });
     $.__views.newOrderWin.add($.__views.currencyField);
     var __alloyId1 = [];
@@ -108,19 +139,18 @@ function Controller() {
     });
     $.__views.column1.addRow($.__views.__alloyId5);
     $.__views.currencyField.add(__alloyId1);
-    $.__views.__alloyId6 = Ti.UI.createButton({
+    $.__views.generateCode = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
-        title: "Show QR Code",
-        id: "__alloyId6"
+        title: "Generate QR Code",
+        id: "generateCode"
     });
-    $.__views.newOrderWin.add($.__views.__alloyId6);
-    newOrder ? $.__views.__alloyId6.addEventListener("click", newOrder) : __defers["$.__views.__alloyId6!click!newOrder"] = true;
+    $.__views.newOrderWin.add($.__views.generateCode);
+    newOrder ? $.__views.generateCode.addEventListener("click", newOrder) : __defers["$.__views.generateCode!click!newOrder"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
-    __defers["$.__views.newOrderWin!open!focusTextField"] && $.__views.newOrderWin.addEventListener("open", focusTextField);
     __defers["$.__views.priceField!return!closeKeyboard"] && $.__views.priceField.addEventListener("return", closeKeyboard);
-    __defers["$.__views.__alloyId6!click!newOrder"] && $.__views.__alloyId6.addEventListener("click", newOrder);
+    __defers["$.__views.generateCode!click!newOrder"] && $.__views.generateCode.addEventListener("click", newOrder);
     _.extend($, exports);
 }
 

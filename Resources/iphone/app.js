@@ -10,6 +10,8 @@ Alloy.Globals.tableTop = "50dp";
 
 Alloy.Globals.currentWallet = "";
 
+Alloy.Globals.current = [];
+
 try {
     if (true && parseInt(Titanium.Platform.version.split(".")[0], 10) >= 7) {
         Alloy.Globals.top = "20dp";

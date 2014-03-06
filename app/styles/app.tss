@@ -1,3 +1,7 @@
+".container": {
+	backgroundColor:"white"
+}
+
 "Label":{
 	top:25,
 	color:"blue"
