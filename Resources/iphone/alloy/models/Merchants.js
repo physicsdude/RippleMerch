@@ -5,7 +5,8 @@ exports.definition = {
         },
         adapter: {
             type: "sql",
-            collection_name: "merchants"
+            collection_name: "merchants",
+            idAttribute: "wallet_name"
         }
     },
     extendModel: function(Model) {

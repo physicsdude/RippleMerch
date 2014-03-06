@@ -1,19 +1,19 @@
 function login() {
-    var merchant = Alloy.Collections.merchants;
+    var myMerchants = Alloy.Collections.merchants;
 
     // Create a new model for the merchant collection
-    var login = Alloy.createModel('merchants', {
+    var merchant = Alloy.createModel('merchants', {
         wallet_name : $.walletNameField.value
     });
 
     // add new model to the global collection
-    merchant.add(wallet_name);
+    myMerchants.add(merchant);
 
     // save the model to persistent storage
     merchant.save();
 
     // reload the tasks
-    merchants.fetch();
+    myMerchants.fetch();
 
     closeWindow();
 }

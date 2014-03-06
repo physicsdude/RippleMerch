@@ -1,12 +1,12 @@
 function Controller() {
     function login() {
-        var merchant = Alloy.Collections.merchants;
-        Alloy.createModel("merchants", {
+        var myMerchants = Alloy.Collections.merchants;
+        var merchant = Alloy.createModel("merchants", {
             wallet_name: $.walletNameField.value
         });
-        merchant.add(wallet_name);
+        myMerchants.add(merchant);
         merchant.save();
-        merchants.fetch();
+        myMerchants.fetch();
         closeWindow();
     }
     function focusTextField() {
