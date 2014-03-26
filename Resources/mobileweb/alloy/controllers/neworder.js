@@ -14,10 +14,12 @@ function Controller() {
         myOrders.fetch();
         var wallet = Alloy.Globals.currentWallet;
         Alloy.Globals.current["price"] = $.priceField.value;
-        var currency = "undefined" == typeof $.currencyField.value ? "XRP" : $.currencyField.value;
+        var currency = "undefined" == typeof $.currencyField.value ? "BTC" : $.currencyField.value;
         var ripple_url = "https://ripple.com//send?to=" + wallet + "&amount=" + $.priceField.value + "&dt=" + currency;
+        alert("ripple url is " + ripple_url);
         var ripple_url_enc = encodeURIComponent(ripple_url);
         var goog_url = "https://chart.googleapis.com/chart?cht=qr&chl=" + ripple_url_enc + "&choe=UTF-8&chs=300x300";
+        closeWindow();
         var qrTitle = "Pay " + $.priceField.value + " " + currency + " to " + wallet;
         var webview = Titanium.UI.createWebView({
             url: goog_url,
@@ -54,6 +56,9 @@ function Controller() {
     }
     function closeKeyboard(e) {
         e.source.blur();
+    }
+    function closeWindow() {
+        $.newOrderWin.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "neworder";
@@ -111,17 +116,17 @@ function Controller() {
     });
     __alloyId1.push($.__views.column1);
     $.__views.__alloyId2 = Ti.UI.createPickerRow({
-        title: "XRP",
+        title: "BTC",
         id: "__alloyId2"
     });
     $.__views.column1.addRow($.__views.__alloyId2);
     $.__views.__alloyId3 = Ti.UI.createPickerRow({
-        title: "BTC",
+        title: "LTC",
         id: "__alloyId3"
     });
     $.__views.column1.addRow($.__views.__alloyId3);
     $.__views.__alloyId4 = Ti.UI.createPickerRow({
-        title: "LTC",
+        title: "XRP",
         id: "__alloyId4"
     });
     $.__views.column1.addRow($.__views.__alloyId4);
@@ -144,7 +149,7 @@ function Controller() {
     $.__views.generateCode = Ti.UI.createButton({
         width: "50%",
         top: "20dp",
-        title: "Get Paid",
+        title: "Generate QR Code",
         id: "generateCode"
     });
     $.__views.newOrderWin.add($.__views.generateCode);

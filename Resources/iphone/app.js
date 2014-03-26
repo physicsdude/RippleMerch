@@ -1,5 +1,7 @@
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
+Alloy.Globals.Barcode = require("ti.barcode");
+
 Alloy.Collections.merchants = Alloy.createCollection("merchants");
 
 Alloy.Collections.orders = Alloy.createCollection("orders");
@@ -14,7 +16,7 @@ Alloy.Globals.tableTop = "20dp";
 
 Alloy.Globals.currentWallet = "";
 
-Alloy.Globals.defaultWallet = "rJQL8Wm4bWUpyGFjEGeAZNFKTQVSK84ke7";
+Alloy.Globals.defaultWallet = "rUs5g1WUuFJ7ZvAU3TsVkNBaV2jbm2f22a";
 
 Alloy.Globals.current = [];
 

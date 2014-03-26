@@ -3,14 +3,15 @@ function checkTransaction() {
 		return;
 	}
 	var url = Alloy.Globals.api['url']+'/addresses/'+Alloy.Globals.currentWallet+'/next_notification';
-	alert('sending '+url);
+	//alert('sending '+url);
 	var client = Ti.Network.createHTTPClient({
 		// function called when the response data is available
 		onload : function(e) {
 			var got = this.responseText;
 			Ti.API.info("Received text: " + got);
-			alert('got '+got);
-			var parsed = JSON.parse(got);
+			alert("Transaction Verification Data Received");
+			//alert('got '+got);
+			//var parsed = JSON.parse(got);
 		},
 		// function called when an error occurs, including a timeout
 		onerror : function(e) {
@@ -55,15 +56,15 @@ function newOrder() {
     myOrders.fetch();
     
     var wallet = Alloy.Globals.currentWallet; // need to fetch merchant info here
-	 Alloy.Globals.current['price'] = $.priceField.value; // save for use in loop
-    var currency = typeof $.currencyField.value == 'undefined' ? 'USD' : $.currencyField.value;
+	Alloy.Globals.current['price'] = $.priceField.value; // save for use in loop
+    var currency = typeof $.currencyField.value == 'undefined' ? 'XRP' : $.currencyField.value;
     //currency.toUppercase();
-    var ripple_url = 'https://ripple.com//trust?to='+wallet+'&amount='+$.priceField.value+'/USD';
-
+    var ripple_url = 'https://ripple.com//send?to='+wallet+'&amount='+$.priceField.value+'&dt='+currency;
+	//alert("ripple url is "+ripple_url);
     var ripple_url_enc = encodeURIComponent(ripple_url);
     var goog_url = 'https://chart.googleapis.com/chart?cht=qr&chl='+ripple_url_enc+'&choe=UTF-8&chs=300x300';
     
-    closeWindow();
+    //closeWindow();
     //Alloy.createController("qrcode").getView().open();
 
 	var qrTitle = "Pay "+$.priceField.value+" "+currency+" to "+wallet; 
@@ -73,7 +74,7 @@ function newOrder() {
 	var closeBtn = Ti.UI.createLabel({text: qrTitle, top: 20, layout: 'vertical', height:44 });
 	var infoBtn  = Ti.UI.createLabel({text: 'Close Window', bottom: 20, layout: 'vertical', height:44, backgroundColor:"#3372AD"});
     window.add(webview);
-	window.add(infoBtn);    
+	window.add(infoBtn);
 	window.add(closeBtn);
 	window.open();
 	closeBtn.addEventListener("click", function(e){
@@ -82,9 +83,9 @@ function newOrder() {
 	});
     window.open({modal:true});
     
-    setTimeout(function(){
-    	checkTransaction();
-	}, 5000);	
+    // setTimeout(function(){
+    	// checkTransaction();
+	// }, 5000);	
 }
 
 

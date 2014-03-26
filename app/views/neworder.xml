@@ -5,13 +5,14 @@
 		<TextField id="priceField" hintText="How Much?" onReturn="closeKeyboard"/>		
 		<Picker id="currencyField" selectionIndicator="true" useSpinner="true">
 			<PickerColumn id="column1">
-				<PickerRow title="USD"/>
+				<PickerRow title="XRP"/>
 				<PickerRow title="BTC"/>
-				<PickerRow title="XRP" selected="true"/>
 				<PickerRow title="LTC"/>
+				<PickerRow title="PPC"/>
 				<PickerRow title="EUR"/>
+				<PickerRow title="USD"/>
 			</PickerColumn>
 		</Picker>
-		<Button class="button" id="generateCode" onClick="newOrder">Generate QR Code</Button>
+		<Button class="button" id="generateCode" onClick="newOrder">Get Paid</Button>
 	</Window>
 </Alloy>
