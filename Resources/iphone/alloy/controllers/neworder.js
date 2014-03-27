@@ -12,10 +12,10 @@ function Controller() {
         myOrders.add(order);
         order.save();
         myOrders.fetch();
-        var wallet = Alloy.Globals.currentWallet;
+        Alloy.Globals.currentWallet;
         Alloy.Globals.current["price"] = $.priceField.value;
         Alloy.Globals.current["price"];
-        var currency = Alloy.Globals.current["currency"];
+        Alloy.Globals.current["currency"];
         if ("" == Alloy.Globals.current["price"].toString()) {
             alert("Please set a price.");
             return;
@@ -24,44 +24,14 @@ function Controller() {
             alert("Please choose a currency.");
             return;
         }
-        var ripple_url = "https://ripple.com//send?to=" + Alloy.Globals.currentWallet + "&amount=" + Alloy.Globals.current["price"] + "&dt=" + Alloy.Globals.current["currency"];
-        var ripple_url_enc = encodeURIComponent(ripple_url);
-        var goog_url = "https://chart.googleapis.com/chart?cht=qr&chl=" + ripple_url_enc + "&choe=UTF-8&chs=300x300";
-        var qrTitle = "Pay " + $.priceField.value + " " + currency + " to " + wallet;
-        var webview = Titanium.UI.createWebView({
-            url: goog_url,
-            width: 300,
-            height: 300
-        });
-        var window = Titanium.UI.createWindow({
-            backgroundColor: "white"
-        });
-        var closeBtn = Ti.UI.createLabel({
-            text: qrTitle,
-            top: 20,
-            layout: "vertical",
-            height: 44
-        });
-        var infoBtn = Ti.UI.createLabel({
-            text: "Close Window",
-            bottom: 20,
-            layout: "vertical",
-            height: 44,
-            backgroundColor: "#3372AD"
-        });
-        window.add(webview);
-        window.add(infoBtn);
-        window.add(closeBtn);
-        window.open();
-        closeBtn.addEventListener("click", function() {
-            window.close();
-        });
-        window.open({
-            modal: true
-        });
+        closeWindow();
+        Alloy.createController("qrcode").getView().open();
     }
     function closeKeyboard(e) {
         e.source.blur();
+    }
+    function closeWindow() {
+        $.newOrderWin.close();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "neworder";

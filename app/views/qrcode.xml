@@ -1,4 +1,5 @@
 <Alloy>
+	<Window id="qrcode" title="HAUL ASS AND GET PAID" class="container" modal="false">
 	<View class="container">
 	</View>
 </Alloy>
