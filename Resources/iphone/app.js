@@ -1,3 +1,8 @@
+function mydebug(str) {
+    if (false === Alloy.Globals.debug) return;
+    Titanium.API.debug(str);
+}
+
 var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
 
 Alloy.Globals.Barcode = require("ti.barcode");
@@ -26,5 +31,7 @@ try {
         Alloy.Globals.tableTop = "70dp";
     }
 } catch (e) {}
+
+Alloy.Globals.debug = true;
 
 Alloy.createController("index");

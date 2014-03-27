@@ -1,3 +1,8 @@
+$.currencyField.addEventListener('change', function(e) {
+    Alloy.Globals.current['currency'] = e.selectedValue;
+	mydebug("Price is "+$.priceField.value+" currency is "+Alloy.Globals.current['currency']);
+});
+
 function checkTransaction() {
 	if ( Alloy.Globals.currentWallet == '' || typeof Alloy.Globals.current['price'] == '' ) {
 		return;
@@ -43,7 +48,7 @@ function newOrder() {
     // Create a new model for the merchant collection
     var order = Alloy.createModel('orders', {
         price : $.priceField.value,
-        currency : $.currencyField.value
+        currency : Alloy.Globals.current['currency'].toString()
     });
 
     // add new model to the global collection
@@ -57,9 +62,18 @@ function newOrder() {
     
     var wallet = Alloy.Globals.currentWallet; // need to fetch merchant info here
 	Alloy.Globals.current['price'] = $.priceField.value; // save for use in loop
-    var currency = typeof $.currencyField.value == 'undefined' ? 'XRP' : $.currencyField.value;
+	var price = Alloy.Globals.current['price'];
+	var currency =  Alloy.Globals.current['currency'];
+    if ( Alloy.Globals.current['price'].toString() == '' ) {
+    	alert("Please set a price.");
+    	return;
+    }
+    if ( typeof  Alloy.Globals.current['currency'].toString() == '' ) {
+    	alert("Please choose a currency.");
+    	return;
+    }
     //currency.toUppercase();
-    var ripple_url = 'https://ripple.com//send?to='+wallet+'&amount='+$.priceField.value+'&dt='+currency;
+    var ripple_url = 'https://ripple.com//send?to='+Alloy.Globals.currentWallet+'&amount='+Alloy.Globals.current['price']+'&dt='+Alloy.Globals.current['currency'];
 	//alert("ripple url is "+ripple_url);
     var ripple_url_enc = encodeURIComponent(ripple_url);
     var goog_url = 'https://chart.googleapis.com/chart?cht=qr&chl='+ripple_url_enc+'&choe=UTF-8&chs=300x300';
@@ -79,7 +93,7 @@ function newOrder() {
 	window.open();
 	closeBtn.addEventListener("click", function(e){
 		window.close();
-	    Alloy.createController("neworder").getView().open();
+	    //Alloy.createController("neworder").getView().open();
 	});
     window.open({modal:true});
     

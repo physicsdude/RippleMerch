@@ -32,3 +32,10 @@ if (OS_IOS || OS_ANDROID) {
 		// catch and ignore
 	}
 }
+
+Alloy.Globals.debug = true;
+function mydebug(str) {
+  if ( Alloy.Globals.debug === false ) 
+   return;
+   Titanium.API.debug(str);
+}

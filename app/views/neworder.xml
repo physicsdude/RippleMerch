@@ -4,7 +4,7 @@
 		<Label id="label" >Accept a Payment</Label>
 		<TextField id="priceField" hintText="How Much?" onReturn="closeKeyboard"/>		
 		<Picker id="currencyField" selectionIndicator="true" useSpinner="true">
-			<PickerColumn id="column1">
+			<PickerColumn id="currencyColumn1">
 				<PickerRow title="XRP"/>
 				<PickerRow title="BTC"/>
 				<PickerRow title="LTC"/>
